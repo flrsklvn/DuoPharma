@@ -62,4 +62,29 @@ public class TaskDB {
         }
         return taskList;
     }
+    
+    public boolean addTask(Task task){
+        try{
+            DBConnectionFactory factory = DBConnectionFactory.getInstance();
+            Connection conn = factory.getConnection();
+            String query = "Insert into `task`(taskName,dueDate,status,action,reportConnected,HandledBy) values(?,?,?,?,?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1,task.getTaskName());
+                pstmt.setString(2,task.getDueDate());
+                    pstmt.setString(3,task.getStatus());
+                        pstmt.setString(4,task.getAction());
+                            pstmt.setInt(5, task.getReportConnected());
+                                pstmt.setInt(6, task.getHandledBy());
+           
+           
+            int rows = pstmt.executeUpdate();
+            
+                  
+            conn.close();
+            return rows == 1;
+           } catch (SQLException ex){
+               Logger.getLogger(TaskDB.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        return false;
+    }
 }

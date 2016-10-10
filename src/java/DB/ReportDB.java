@@ -58,4 +58,26 @@ public class ReportDB {
         }
         return reportList;
     }
+    
+    public boolean addReport(Report report){
+        try{
+            DBConnectionFactory factory = DBConnectionFactory.getInstance();
+            Connection conn = factory.getConnection();
+            String query = "Insert into `report`(reportType,status,reportRef) values(?,?,?)"; //you could include file when we know how to add it.
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1,report.getReportType());
+                pstmt.setString(2,report.getStatus());
+                    pstmt.setInt(3,report.getReportRef());
+           
+           
+            int rows = pstmt.executeUpdate();
+            
+                  
+            conn.close();
+            return rows == 1;
+           } catch (SQLException ex){
+               Logger.getLogger(ReportDB.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        return false;
+    }
 }

@@ -199,19 +199,23 @@
                     <li data-toggle="collapse" data-target="#products" class="collapsed">
                         <a href="#"><i class="fa fa-gift fa-lg"></i> Upload Facility <span class="arrow"></span></a>
                     </li>
+                    <li>
                     <ul class="sub-menu collapse" id="products">
                         <li><a href="isrAccountingUpload.jsp">Accounting</a></li>
                         <li><a href="isrInventoryUpload.jsp">Inventory</a></li>
                         <li><a href="isrSalesUpload.jsp">Sales</a></li>
                     </ul>
+                        </li>
                     <li data-toggle="collapse" data-target="#service" class="collapsed">
                         <a href="#"><i class="fa fa-globe fa-lg"></i> Reports Library <span class="arrow"></span></a>
                     </li>
+                    <li>
                     <ul class="sub-menu collapse" id="service">
                         <li>Accounting</li>
                         <li>Inventory</li>
                         <li>Sales</li>
                     </ul>
+                        </li>
 
 
                 </ul>
@@ -262,6 +266,7 @@
 
 
                 </div>
+                
                 <div class="col-sm-3 sidenav">
                     <div class="well">
                         <p><b>Reports for Approval</b></p>
@@ -281,6 +286,7 @@
                             </tbody>
                         </table>
                     </div>
+                    <!-- @start -->
                     <div class="well">
                         <p><b>Reports for Entry Validation</b></p>
                         <table class="table table-list-search">
@@ -297,9 +303,12 @@
                                     <td>Incomplete</td>
                                 </tr>
                             </tbody>
+                        </table>
                     </div>
+                    <!-- @end -->
                 </div>
             </div>
         </div>
+
     </body>
 </html>

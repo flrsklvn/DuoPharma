@@ -238,19 +238,23 @@ public final class isrview_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <li data-toggle=\"collapse\" data-target=\"#products\" class=\"collapsed\">\n");
       out.write("                        <a href=\"#\"><i class=\"fa fa-gift fa-lg\"></i> Upload Facility <span class=\"arrow\"></span></a>\n");
       out.write("                    </li>\n");
+      out.write("                    <li>\n");
       out.write("                    <ul class=\"sub-menu collapse\" id=\"products\">\n");
       out.write("                        <li><a href=\"isrAccountingUpload.jsp\">Accounting</a></li>\n");
       out.write("                        <li><a href=\"isrInventoryUpload.jsp\">Inventory</a></li>\n");
       out.write("                        <li><a href=\"isrSalesUpload.jsp\">Sales</a></li>\n");
       out.write("                    </ul>\n");
+      out.write("                        </li>\n");
       out.write("                    <li data-toggle=\"collapse\" data-target=\"#service\" class=\"collapsed\">\n");
       out.write("                        <a href=\"#\"><i class=\"fa fa-globe fa-lg\"></i> Reports Library <span class=\"arrow\"></span></a>\n");
       out.write("                    </li>\n");
+      out.write("                    <li>\n");
       out.write("                    <ul class=\"sub-menu collapse\" id=\"service\">\n");
       out.write("                        <li>Accounting</li>\n");
       out.write("                        <li>Inventory</li>\n");
       out.write("                        <li>Sales</li>\n");
       out.write("                    </ul>\n");
+      out.write("                        </li>\n");
       out.write("\n");
       out.write("\n");
       out.write("                </ul>\n");
@@ -301,6 +305,7 @@ public final class isrview_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("                </div>\n");
+      out.write("                \n");
       out.write("                <div class=\"col-sm-3 sidenav\">\n");
       out.write("                    <div class=\"well\">\n");
       out.write("                        <p><b>Reports for Approval</b></p>\n");
@@ -320,6 +325,7 @@ public final class isrview_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            </tbody>\n");
       out.write("                        </table>\n");
       out.write("                    </div>\n");
+      out.write("                    <!-- @start -->\n");
       out.write("                    <div class=\"well\">\n");
       out.write("                        <p><b>Reports for Entry Validation</b></p>\n");
       out.write("                        <table class=\"table table-list-search\">\n");
@@ -336,10 +342,13 @@ public final class isrview_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    <td>Incomplete</td>\n");
       out.write("                                </tr>\n");
       out.write("                            </tbody>\n");
+      out.write("                        </table>\n");
       out.write("                    </div>\n");
+      out.write("                    <!-- @end -->\n");
       out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("        </div>\n");
+      out.write("\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

@@ -12,7 +12,7 @@ package DB;
 import java.sql.Connection;
 
 public abstract class DBConnectionFactory {
-    String url = "jdbc:mysql://localhost:3306/thes01";
+    String url = "jdbc:mysql://localhost:3306/thes01DB";
         String username = "root";
         String password = "0105";
         
