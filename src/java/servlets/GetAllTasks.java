@@ -6,7 +6,7 @@
 package SERVLETS;
 
 import DB.TaskDB;
-import ENTITIES.Task;
+import Entities.Task;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;

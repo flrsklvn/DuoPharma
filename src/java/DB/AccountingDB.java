@@ -5,9 +5,9 @@
  */
 package DB;
 
-import ENTITIES.Accounting;
-import ENTITIES.Report;
-import ENTITIES.User;
+import Entities.Accounting;
+import Entities.Report;
+import Entities.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,6 +50,7 @@ public class AccountingDB {
                   report.setPoNo(rs.getString("poNo"));
                   report.setStartDate(rs.getString("startDate"));
                   report.setTerms(rs.getString("terms"));
+                  report.setReportRef(rs.getInt("reportRef"));
                   
                   reportList.add(report);
                 } while (rs.next());

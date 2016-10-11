@@ -5,8 +5,9 @@
  */
 package DB;
 
-import ENTITIES.Inventory;
-import ENTITIES.User;
+import Entities.Inventory;
+import Entities.Sales;
+import Entities.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,14 +44,15 @@ public class InventoryDB {
                   
                   inventory = new Inventory();
                   inventory.setInventoryID(rs.getInt("inventoryID"));
-                  inventory.setAvemonTO(rs.getString("avemonTO"));
-                  inventory.setBatchNo(rs.getString("batchNo"));
+                  inventory.setAvemonTO(rs.getDouble("avemonTO"));
+                  inventory.setBatchNo(rs.getInt("batchNo"));
                   inventory.setBrandName(rs.getString("brandName"));
                   inventory.setExpDate(rs.getString("expDate"));
-                  inventory.setGrandTotal(rs.getString("grandTotal"));
+                  inventory.setGrandTotal(rs.getInt("grandTotal"));
                   inventory.setInventoryMonths(rs.getString("inventoryMonths"));
-                  inventory.setQuantityOnHand(rs.getString("quantityOnHand"));
+                  inventory.setQuantityOnHand(rs.getInt("quantityOnHand"));
                   inventory.setShelfLife(rs.getString("shelfLife"));
+                  inventory.setReportRef(rs.getInt("reportRef"));
                   
                   inventoryList.add(inventory);
                 } while (rs.next());
@@ -62,5 +64,34 @@ public class InventoryDB {
             Logger.getLogger(InventoryDB.class.getName()).log(Level.SEVERE, null, ex);
         }
         return inventoryList;
+    }
+    
+    public boolean addInventory(Inventory inventory){
+        try{
+            DBConnectionFactory factory = DBConnectionFactory.getInstance();
+            Connection conn = factory.getConnection();
+            String query = "Insert into inventory(brandName,quantityOnHand,grandTotal,batchNo,expDate,shelfLife,avemonTO,inventoryMonths,reportRef) values(?,?,?,?,?,?,?,?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1,inventory.getBrandName());
+            pstmt.setInt(2,inventory.getQuantityOnHand());
+            pstmt.setInt(3,inventory.getGrandTotal());
+            pstmt.setInt(4,inventory.getBatchNo());
+            pstmt.setString(5,inventory.getExpDate());
+            pstmt.setString(6,inventory.getShelfLife());
+            pstmt.setDouble(7,inventory.getAvemonTO());
+            pstmt.setString(8,inventory.getInventoryMonths());
+            pstmt.setInt(9, inventory.getReportRef());
+
+           
+           
+            int rows = pstmt.executeUpdate();
+            
+                  
+            conn.close();
+            return rows == 1;
+           } catch (SQLException ex){
+               Logger.getLogger(CustomerDB.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        return false;
     }
 }

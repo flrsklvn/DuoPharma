@@ -5,8 +5,8 @@
  */
 package DB;
 
-import ENTITIES.Task;
-import ENTITIES.User;
+import Entities.Task;
+import Entities.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

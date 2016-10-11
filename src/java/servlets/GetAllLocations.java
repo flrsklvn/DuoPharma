@@ -6,7 +6,7 @@
 package SERVLETS;
 
 import DB.LocationDB;
-import ENTITIES.Location;
+import Entities.Location;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;

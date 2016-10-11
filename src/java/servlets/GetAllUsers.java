@@ -6,7 +6,7 @@
 package SERVLETS;
 
 import DB.UserDB;
-import ENTITIES.User;
+import Entities.User;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;

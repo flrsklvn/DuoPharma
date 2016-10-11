@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ENTITIES;
+package Entities;
 
 /**
  *
@@ -17,6 +17,7 @@ public class Accounting {
     protected String dueDate;
     protected String agingDays;
     protected int customerID;
+    private int reportRef;
 
     public Accounting() {
     }
@@ -117,5 +118,19 @@ public class Accounting {
      */
     public void setCustomerID(int customerID) {
         this.customerID = customerID;
+    }
+
+    /**
+     * @return the reportRef
+     */
+    public int getReportRef() {
+        return reportRef;
+    }
+
+    /**
+     * @param reportRef the reportRef to set
+     */
+    public void setReportRef(int reportRef) {
+        this.reportRef = reportRef;
     }
 }

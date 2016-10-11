@@ -6,7 +6,7 @@
 package SERVLETS;
 
 import DB.ReportDB;
-import ENTITIES.Report;
+import Entities.Report;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;

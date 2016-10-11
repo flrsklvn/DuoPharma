@@ -72,6 +72,14 @@
         <servlet-name>UploadSalesServlet</servlet-name>
         <servlet-class>servlets.UploadSalesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UploadInventoryServlet</servlet-name>
+        <servlet-class>servlets.UploadInventoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UploadAccountingServlet</servlet-name>
+        <servlet-class>servlets.UploadAccountingServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>main</servlet-name>
         <url-pattern>/main</url-pattern>
@@ -143,6 +151,14 @@
     <servlet-mapping>
         <servlet-name>UploadSalesServlet</servlet-name>
         <url-pattern>/UploadSalesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadInventoryServlet</servlet-name>
+        <url-pattern>/UploadInventoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadAccountingServlet</servlet-name>
+        <url-pattern>/UploadAccountingServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

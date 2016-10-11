@@ -5,8 +5,8 @@
  */
 package DB;
 
-import ENTITIES.Sales;
-import ENTITIES.User;
+import Entities.Sales;
+import Entities.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,6 +46,7 @@ public class SalesDB {
                   sales.setSalesAmmount(rs.getFloat("salesAmmount"));
                   sales.setLocation(rs.getInt("location"));
                   sales.setCreatedBy(rs.getInt("createdBy"));
+                  sales.setReportRef(rs.getInt("reportRef"));
                           
                   salesList.add(sales);
                 } while (rs.next());
@@ -58,4 +59,28 @@ public class SalesDB {
         }
         return salesList;
     }
+    
+    public boolean addSales(Sales sales){
+        try{
+            DBConnectionFactory factory = DBConnectionFactory.getInstance();
+            Connection conn = factory.getConnection();
+            String query = "Insert into sales(salesAmmount,createdBy,location,ReportRef) values(?,?,?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setDouble(1,sales.getSalesAmmount());
+                pstmt.setInt(2,sales.getCreatedBy());
+                    pstmt.setInt(3,sales.getLocation());
+                    pstmt.setInt(4,sales.getReportRef());
+
+            int rows = pstmt.executeUpdate();
+            
+                  
+            conn.close();
+            return rows == 1;
+           } catch (SQLException ex){
+               Logger.getLogger(CustomerDB.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        return false;
+    }
+    
+    
 }

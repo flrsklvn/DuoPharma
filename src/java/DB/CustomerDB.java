@@ -5,8 +5,8 @@
  */
 package DB;
 
-import ENTITIES.Customer;
-import ENTITIES.User;
+import Entities.Customer;
+import Entities.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ENTITIES;
+package Entities;
 
 /**
  *
@@ -11,9 +11,10 @@ package ENTITIES;
  */
 public class Sales {
     protected int salesID;
-    protected float salesAmmount;
+    protected double salesAmmount;
     protected int createdBy;
     protected int location;
+    private int reportRef;
 
     public Sales() {
     }
@@ -36,14 +37,14 @@ public class Sales {
     /**
      * @return the salesAmmount
      */
-    public float getSalesAmmount() {
+    public double getSalesAmmount() {
         return salesAmmount;
     }
 
     /**
      * @param salesAmmount the salesAmmount to set
      */
-    public void setSalesAmmount(float salesAmmount) {
+    public void setSalesAmmount(double salesAmmount) {
         this.salesAmmount = salesAmmount;
     }
 
@@ -73,5 +74,19 @@ public class Sales {
      */
     public void setLocation(int location) {
         this.location = location;
+    }
+
+    /**
+     * @return the reportRef
+     */
+    public int getReportRef() {
+        return reportRef;
+    }
+
+    /**
+     * @param reportRef the reportRef to set
+     */
+    public void setReportRef(int reportRef) {
+        this.reportRef = reportRef;
     }
 }

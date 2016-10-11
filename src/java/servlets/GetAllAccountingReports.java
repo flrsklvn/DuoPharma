@@ -6,7 +6,7 @@
 package SERVLETS;
 
 import DB.AccountingDB;
-import ENTITIES.Accounting;
+import Entities.Accounting;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;

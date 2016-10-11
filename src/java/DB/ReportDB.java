@@ -5,8 +5,8 @@
  */
 package DB;
 
-import ENTITIES.Report;
-import ENTITIES.User;
+import Entities.Report;
+import Entities.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,9 +42,8 @@ public class ReportDB {
                   
                   report = new Report();
                   report.setReportID(rs.getInt("reportID"));
-                  report.setReportRef(rs.getInt("reportRef"));
                   report.setReportType(rs.getString("reportType"));
-                  report.setStatus(rs.getString("staus"));
+                  report.setStatus(rs.getString("status"));
                   report.setFile(rs.getBlob("file"));
                   
                   reportList.add(report);
@@ -63,11 +62,10 @@ public class ReportDB {
         try{
             DBConnectionFactory factory = DBConnectionFactory.getInstance();
             Connection conn = factory.getConnection();
-            String query = "Insert into `report`(reportType,status,reportRef) values(?,?,?)"; //you could include file when we know how to add it.
+            String query = "Insert into `report`(reportType,status) values(?,?)"; //you could include file when we know how to add it.
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setString(1,report.getReportType());
                 pstmt.setString(2,report.getStatus());
-                    pstmt.setInt(3,report.getReportRef());
            
            
             int rows = pstmt.executeUpdate();
@@ -79,5 +77,28 @@ public class ReportDB {
                Logger.getLogger(ReportDB.class.getName()).log(Level.SEVERE, null, ex);
            }
         return false;
+    }
+    
+    public int GetLastReport(){
+        int lastReport = 1;
+        try{
+            DBConnectionFactory factory = DBConnectionFactory.getInstance();
+            Connection conn = factory.getConnection();
+            String query = "select LAST(reportID) from report;";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                
+                do{
+                  lastReport = rs.getInt("reportID");
+                } while (rs.next());
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+        }catch (SQLException ex){
+            Logger.getLogger(ReportDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lastReport;
     }
 }

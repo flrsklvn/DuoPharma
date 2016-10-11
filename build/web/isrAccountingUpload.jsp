@@ -211,6 +211,7 @@
                     <li data-toggle="collapse" data-target="#products" class="collapsed active">
                         <a href="#"><i class="fa fa-gift fa-lg"></i> Upload Facility <span class="arrow"></span></a>
                     </li>
+                    <li>
                     <ul class="sub-menu collapse" id="products">
                         <li><a href="isrAccountingUpload.jsp" class="active">Accounting</a></li>
                         <li><a href="isrInventoryUpload.jsp">Inventory</a></li>
@@ -220,6 +221,7 @@
                     <li data-toggle="collapse" data-target="#service" class="collapsed">
                         <a href="#"><i class="fa fa-globe fa-lg"></i> Reports Library <span class="arrow"></span></a>
                     </li>
+                    <li>
                     <ul class="sub-menu collapse" id="service">
                         <li>Accounting</li>
                         <li>Inventory</li>
@@ -238,7 +240,7 @@
 
                             <!-- Standar Form -->
                             <h4>Select files from your computer</h4>
-                            <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
+                            <form action="${pageContext.request.contextPath}/UploadAccountingServlet" method="post" enctype="multipart/form-data" id="js-upload-form">
                                 <div class="form-inline">
                                     <div class="form-group">
                                         <input type="file" name="files[]" id="js-upload-files" multiple>

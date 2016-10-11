@@ -3,6 +3,8 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import Entities.Sales;
+import java.util.ArrayList;
 
 public final class isrAfteruploadSales_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -41,6 +43,8 @@ public final class isrAfteruploadSales_jsp extends org.apache.jasper.runtime.Htt
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\n");
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -231,20 +235,24 @@ public final class isrAfteruploadSales_jsp extends org.apache.jasper.runtime.Htt
       out.write("                    <li data-toggle=\"collapse\" data-target=\"#products\" class=\"collapsed active\">\n");
       out.write("                        <a href=\"#\"><i class=\"fa fa-gift fa-lg\"></i> Upload Facility <span class=\"arrow\"></span></a>\n");
       out.write("                    </li>\n");
+      out.write("                    \n");
+      out.write("                    <li>\n");
       out.write("                    <ul class=\"sub-menu collapse\" id=\"products\">\n");
       out.write("                          <li><a href=\"isrAccountingUpload.jsp\">Accounting</a></li>\n");
       out.write("                        <li><a href=\"isrInventoryUpload.jsp\">Inventory</a></li>\n");
       out.write("                        <li><a href=\"isrSalesUpload.jsp\" class=\"active\">Sales</a></li>\n");
       out.write("                    </ul>\n");
+      out.write("                    </li>\n");
       out.write("                    <li data-toggle=\"collapse\" data-target=\"#service\" class=\"collapsed\">\n");
       out.write("                        <a href=\"#\"><i class=\"fa fa-globe fa-lg\"></i> Reports Library <span class=\"arrow\"></span></a>\n");
       out.write("                    </li>\n");
+      out.write("                    <li>\n");
       out.write("                    <ul class=\"sub-menu collapse\" id=\"service\">\n");
       out.write("                        <li>Accounting</li>\n");
       out.write("                        <li>Inventory</li>\n");
       out.write("                        <li>Sales</li>\n");
       out.write("                    </ul>\n");
-      out.write("\n");
+      out.write("                    </li>\n");
       out.write("\n");
       out.write("               \n");
       out.write("                   \n");
@@ -255,7 +263,9 @@ public final class isrAfteruploadSales_jsp extends org.apache.jasper.runtime.Htt
       out.write("            <div class=\"row\">\n");
       out.write("                <div class=\"col-md-12\">\n");
       out.write("                    <center><h4>Sales Report Summary</h4></center>\n");
-      out.write("                      <table class=\"table table-list-search\">\n");
+      out.write("                    <form>\n");
+      out.write("                    <table class=\"table table-list-search\">\n");
+      out.write("                          \n");
       out.write("                        <thead>\n");
       out.write("                            <tr>\n");
       out.write("                                <th>Amount</th>\n");
@@ -267,34 +277,38 @@ public final class isrAfteruploadSales_jsp extends org.apache.jasper.runtime.Htt
       out.write("\n");
       out.write("                            </tr>\n");
       out.write("                        </thead>\n");
+      out.write("                        ");
+
+                        ArrayList<Sales> sales = (ArrayList<Sales>) request.getAttribute("arrSales");
+                      
+      out.write("\n");
       out.write("                        <tbody>\n");
-      out.write("                            <tr>\n");
-      out.write("                                <td>25,000</td>\n");
-      out.write("                                <td>John Wick</td>\n");
-      out.write("                                <td>Muntinlupa</td>\n");
-      out.write("                             \n");
-      out.write("                          \n");
-      out.write("\n");
-      out.write("\n");
-      out.write("                            </tr>\n");
-      out.write("                            <tr>\n");
-      out.write("                                 <td>25,000</td>\n");
-      out.write("                                <td>John Wick</td>\n");
-      out.write("                                <td>Muntinlupa</td>\n");
-      out.write("                          \n");
-      out.write("                               \n");
-      out.write("\n");
-      out.write("                            </tr>\n");
-      out.write("                            <tr>\n");
-      out.write("                        <td>25,000</td>\n");
-      out.write("                                <td>John Wick</td>\n");
-      out.write("                                <td>Muntinlupa</td>\n");
-      out.write("                          \n");
       out.write("                            \n");
-      out.write("                            </tr>\n");
+      out.write("                                 ");
+    for(int k=0; k<sales.size(); k++){
+      out.write("\n");
+      out.write("                                 <tr>\n");
+      out.write("                                <td>");
+      out.print( sales.get(k).getSalesAmmount());
+      out.write("</td>\n");
+      out.write("                                <td>");
+      out.print( sales.get(k).getCreatedBy());
+      out.write("</td>\n");
+      out.write("                                <td>");
+      out.print( sales.get(k).getLocation());
+      out.write("</td>\n");
+      out.write("                                 </tr>\n");
+      out.write("                             ");
+}
+      out.write("\n");
+      out.write("                             \n");
       out.write("                        </tbody>\n");
-      out.write("                    </table>   \n");
-      out.write("                     <button type=\"submit\" id=\"js-upload-submit\"><a href=\"isrSalesUpload.jsp\">Confirm</a></button>\n");
+      out.write("                          \n");
+      out.write("                    </table>\n");
+      out.write("                              <button type=\"submit\" id=\"js-upload-submit\"><a href=\"isrSalesUpload.jsp\">Confirm</a></button>\n");
+      out.write("                    </form>\n");
+      out.write("                    \n");
+      out.write("               \n");
       out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("        </div>\n");

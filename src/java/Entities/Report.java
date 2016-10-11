@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ENTITIES;
+package Entities;
 
 import java.sql.Blob;
 
@@ -16,11 +16,16 @@ public class Report {
     protected int reportID;
     protected String reportType;
     protected String status;
-    protected int reportRef;
     protected Blob file;
 
     public Report() {
     }
+
+    public Report(String reportType, String status) {
+        this.reportType = reportType;
+        this.status = status;
+    }
+    
     
 
     /**
@@ -63,20 +68,6 @@ public class Report {
      */
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    /**
-     * @return the reportRef
-     */
-    public int getReportRef() {
-        return reportRef;
-    }
-
-    /**
-     * @param reportRef the reportRef to set
-     */
-    public void setReportRef(int reportRef) {
-        this.reportRef = reportRef;
     }
 
     /**

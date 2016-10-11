@@ -5,8 +5,8 @@
  */
 package DB;
 
-import ENTITIES.Location;
-import ENTITIES.User;
+import Entities.Location;
+import Entities.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

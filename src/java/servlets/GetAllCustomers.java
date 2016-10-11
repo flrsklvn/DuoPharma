@@ -7,8 +7,8 @@ package SERVLETS;
 
 import DB.CustomerDB;
 import DB.SalesDB;
-import ENTITIES.Customer;
-import ENTITIES.Sales;
+import Entities.Customer;
+import Entities.Sales;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;

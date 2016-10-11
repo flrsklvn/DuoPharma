@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ENTITIES;
+package Entities;
 
 /**
  *
@@ -12,13 +12,14 @@ package ENTITIES;
 public class Inventory {
     protected int inventoryID;
     protected String brandName;
-    protected String quantityOnHand;
-    protected String grandTotal;
-    protected String batchNo;
+    protected int quantityOnHand;
+    protected int grandTotal;
+    protected int batchNo;
     protected String expDate;
     protected String shelfLife;
-    protected String avemonTO;
+    protected double avemonTO;
     protected String inventoryMonths;
+    private int reportRef;
 
     public Inventory() {
     }
@@ -54,42 +55,42 @@ public class Inventory {
     /**
      * @return the quantityOnHand
      */
-    public String getQuantityOnHand() {
+    public int getQuantityOnHand() {
         return quantityOnHand;
     }
 
     /**
      * @param quantityOnHand the quantityOnHand to set
      */
-    public void setQuantityOnHand(String quantityOnHand) {
+    public void setQuantityOnHand(int quantityOnHand) {
         this.quantityOnHand = quantityOnHand;
     }
 
     /**
      * @return the grandTotal
      */
-    public String getGrandTotal() {
+    public int getGrandTotal() {
         return grandTotal;
     }
 
     /**
      * @param grandTotal the grandTotal to set
      */
-    public void setGrandTotal(String grandTotal) {
+    public void setGrandTotal(int grandTotal) {
         this.grandTotal = grandTotal;
     }
 
     /**
      * @return the batchNo
      */
-    public String getBatchNo() {
+    public int getBatchNo() {
         return batchNo;
     }
 
     /**
      * @param batchNo the batchNo to set
      */
-    public void setBatchNo(String batchNo) {
+    public void setBatchNo(int batchNo) {
         this.batchNo = batchNo;
     }
 
@@ -124,14 +125,14 @@ public class Inventory {
     /**
      * @return the avemonTO
      */
-    public String getAvemonTO() {
+    public double getAvemonTO() {
         return avemonTO;
     }
 
     /**
      * @param avemonTO the avemonTO to set
      */
-    public void setAvemonTO(String avemonTO) {
+    public void setAvemonTO(double avemonTO) {
         this.avemonTO = avemonTO;
     }
 
@@ -147,6 +148,20 @@ public class Inventory {
      */
     public void setInventoryMonths(String inventoryMonths) {
         this.inventoryMonths = inventoryMonths;
+    }
+
+    /**
+     * @return the reportRef
+     */
+    public int getReportRef() {
+        return reportRef;
+    }
+
+    /**
+     * @param reportRef the reportRef to set
+     */
+    public void setReportRef(int reportRef) {
+        this.reportRef = reportRef;
     }
     
 }

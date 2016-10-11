@@ -4,6 +4,8 @@
     Author     : mvcalsado
 --%>
 
+<%@page import="Entities.Sales"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -192,20 +194,24 @@
                     <li data-toggle="collapse" data-target="#products" class="collapsed active">
                         <a href="#"><i class="fa fa-gift fa-lg"></i> Upload Facility <span class="arrow"></span></a>
                     </li>
+                    
+                    <li>
                     <ul class="sub-menu collapse" id="products">
                           <li><a href="isrAccountingUpload.jsp">Accounting</a></li>
                         <li><a href="isrInventoryUpload.jsp">Inventory</a></li>
                         <li><a href="isrSalesUpload.jsp" class="active">Sales</a></li>
                     </ul>
+                    </li>
                     <li data-toggle="collapse" data-target="#service" class="collapsed">
                         <a href="#"><i class="fa fa-globe fa-lg"></i> Reports Library <span class="arrow"></span></a>
                     </li>
+                    <li>
                     <ul class="sub-menu collapse" id="service">
                         <li>Accounting</li>
                         <li>Inventory</li>
                         <li>Sales</li>
                     </ul>
-
+                    </li>
 
                
                    
@@ -216,7 +222,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <center><h4>Sales Report Summary</h4></center>
-                      <table class="table table-list-search">
+                    <form>
+                    <table class="table table-list-search">
+                          
                         <thead>
                             <tr>
                                 <th>Amount</th>
@@ -229,38 +237,25 @@
                             </tr>
                         </thead>
                         <%
-                     //   ArrayList<Sales> sales = (ArrayList<Sales>) request.getAttribute("arrSales");
-                     
-
-                        %>
+                        ArrayList<Sales> sales = (ArrayList<Sales>) request.getAttribute("arrSales");
+                      %>
                         <tbody>
-                            <tr>
-                                <td>hjb</td>
-                                <td>John Wick</td>
-                                <td>Muntinlupa</td>
-                             
-                          
-
-
-                            </tr>
-                            <tr>
-                                 <td>25,000</td>
-                                <td>John Wick</td>
-                                <td>Muntinlupa</td>
-                          
-                               
-
-                            </tr>
-                            <tr>
-                        <td>25,000</td>
-                                <td>John Wick</td>
-                                <td>Muntinlupa</td>
-                          
                             
-                            </tr>
+                                 <%    for(int k=0; k<sales.size(); k++){%>
+                                 <tr>
+                                <td><%= sales.get(k).getSalesAmmount()%></td>
+                                <td><%= sales.get(k).getCreatedBy()%></td>
+                                <td><%= sales.get(k).getLocation()%></td>
+                                 </tr>
+                             <%}%>
+                             
                         </tbody>
-                    </table>   
-                     <button type="submit" id="js-upload-submit"><a href="isrSalesUpload.jsp">Confirm</a></button>
+                          
+                    </table>
+                              <button type="submit" id="js-upload-submit"><a href="isrSalesUpload.jsp">Confirm</a></button>
+                    </form>
+                    
+               
                 </div>
             </div>
         </div>
