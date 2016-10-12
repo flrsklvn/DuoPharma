@@ -6,6 +6,7 @@
 package DB;
 
 import Entities.Accounting;
+import Entities.Inventory;
 import Entities.Report;
 import Entities.User;
 import java.sql.Connection;
@@ -44,10 +45,10 @@ public class AccountingDB {
                   
                   report = new Accounting();
                   report.setAccountingID(rs.getInt("accountingID"));
-                  report.setAgingDays(rs.getString("agingDays"));
+                  report.setAgingDays(rs.getInt("agingDays"));
                   report.setCustomerID(rs.getInt("customerID"));
                   report.setDueDate(rs.getString("dueDate"));
-                  report.setPoNo(rs.getString("poNo"));
+                  report.setPoNo(rs.getInt("poNo"));
                   report.setStartDate(rs.getString("startDate"));
                   report.setTerms(rs.getString("terms"));
                   report.setReportRef(rs.getInt("reportRef"));
@@ -62,5 +63,32 @@ public class AccountingDB {
             Logger.getLogger(AccountingDB.class.getName()).log(Level.SEVERE, null, ex);
         }
         return reportList;
+    }
+    
+    public boolean addAccounting(Accounting accounting){
+        try{
+            DBConnectionFactory factory = DBConnectionFactory.getInstance();
+            Connection conn = factory.getConnection();
+            String query = "Insert into accounting(startDate,poNo,terms,dueDate,agingDays,customerID,ReportRef) values(?,?,?,?,?,?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1,accounting.getStartDate());
+            pstmt.setInt(2,accounting.getPoNo());
+            pstmt.setString(3,accounting.getTerms());
+            pstmt.setString(4,accounting.getDueDate());
+            pstmt.setInt(5,accounting.getAgingDays());
+            pstmt.setInt(6,accounting.getCustomerID());
+            pstmt.setInt(7, accounting.getReportRef());
+
+           
+           
+            int rows = pstmt.executeUpdate();
+            
+                  
+            conn.close();
+            return rows == 1;
+           } catch (SQLException ex){
+               Logger.getLogger(CustomerDB.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        return false;
     }
 }

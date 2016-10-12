@@ -12,10 +12,10 @@ package Entities;
 public class Accounting {
     protected int accountingID;
     protected String startDate;
-    protected String poNo;
+    protected int poNo;
     protected String terms;
     protected String dueDate;
-    protected String agingDays;
+    protected int agingDays;
     protected int customerID;
     private int reportRef;
 
@@ -53,14 +53,14 @@ public class Accounting {
     /**
      * @return the poNo
      */
-    public String getPoNo() {
+    public int getPoNo() {
         return poNo;
     }
 
     /**
      * @param poNo the poNo to set
      */
-    public void setPoNo(String poNo) {
+    public void setPoNo(int poNo) {
         this.poNo = poNo;
     }
 
@@ -95,14 +95,14 @@ public class Accounting {
     /**
      * @return the agingDays
      */
-    public String getAgingDays() {
+    public int getAgingDays() {
         return agingDays;
     }
 
     /**
      * @param agingDays the agingDays to set
      */
-    public void setAgingDays(String agingDays) {
+    public void setAgingDays(int agingDays) {
         this.agingDays = agingDays;
     }
 

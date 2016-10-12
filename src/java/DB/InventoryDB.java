@@ -70,7 +70,7 @@ public class InventoryDB {
         try{
             DBConnectionFactory factory = DBConnectionFactory.getInstance();
             Connection conn = factory.getConnection();
-            String query = "Insert into inventory(brandName,quantityOnHand,grandTotal,batchNo,expDate,shelfLife,avemonTO,inventoryMonths,reportRef) values(?,?,?,?,?,?,?,?,?)";
+            String query = "Insert into inventory(brandName,quantityOnHand,grandTotal,batchNo,expDate,shelfLife,avemonTO,inventoryMonths,ReportRef) values(?,?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setString(1,inventory.getBrandName());
             pstmt.setInt(2,inventory.getQuantityOnHand());

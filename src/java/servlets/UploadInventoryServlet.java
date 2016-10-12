@@ -14,6 +14,7 @@ import Entities.Sales;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Blob;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -25,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import static org.apache.poi.hssf.usermodel.HeaderFooter.file;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
@@ -90,7 +92,12 @@ public class UploadInventoryServlet extends HttpServlet {
        FormulaEvaluator formulaEvaluator = 
                      wb.getCreationHelper().createFormulaEvaluator();
    ArrayList<Inventory> arrInventory = new ArrayList<>();
-  
+   
+  ReportDB reportDB = new ReportDB();
+        reportDB.addReport(new Report("Inventory","Pending"));
+        ArrayList<Report> reportList = new ArrayList();
+        reportList = reportDB.getAllReports();
+        int ReportRef = reportList.size();
        for (Row ligne : sheet) {//iterate rows
           Inventory inventory = new Inventory();
          for (Cell cell : ligne) {//iterate columns
@@ -147,7 +154,7 @@ public class UploadInventoryServlet extends HttpServlet {
                      break;
            }
          }
-         
+         inventory.setReportRef(ReportRef);
          arrInventory.add(inventory);
          System.out.println();
        }
@@ -158,12 +165,7 @@ public class UploadInventoryServlet extends HttpServlet {
     for(int j=0; j<arrInventory.size(); j++){
         inventoryDB.addInventory(arrInventory.get(j));
     }
-    
-    //dito ko nagsimula - myron
-        ReportDB reportDB = new ReportDB();
-        ArrayList<Report> reportList = new ArrayList();
-        
-        reportList = reportDB.getAllReports();
+ 
     
          ServletContext context= getServletContext();
                     RequestDispatcher rd= context.getRequestDispatcher("/isrAfteruploadInventory.jsp");

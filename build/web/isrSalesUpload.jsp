@@ -240,7 +240,7 @@
                         <div class="panel-heading"><strong>Upload Sales File</strong></div>
                         <div class="panel-body">
 
-                            <!-- Standar Form -->
+                            <!-- Standard Form -->
                             <h4>Select files from your computer</h4>
                             <form action="${pageContext.request.contextPath}/UploadSalesServlet" method="post" enctype="multipart/form-data">
                                 <div class="form-inline">

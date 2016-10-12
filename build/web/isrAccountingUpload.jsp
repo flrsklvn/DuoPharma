@@ -240,12 +240,12 @@
 
                             <!-- Standar Form -->
                             <h4>Select files from your computer</h4>
-                            <form action="${pageContext.request.contextPath}/UploadAccountingServlet" method="post" enctype="multipart/form-data" id="js-upload-form">
+                            <form action="${pageContext.request.contextPath}/UploadAccountingServlet" method="post" enctype="multipart/form-data">
                                 <div class="form-inline">
                                     <div class="form-group">
-                                        <input type="file" name="files[]" id="js-upload-files" multiple>
+                                        <input type="file" name="file" id="js-upload-files">
                                     </div>
-                                    <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit"><a href="isrAfteruploadAccounting.jsp">Upload files</a></button>
+                                    <input type="submit" class="btn btn-sm btn-primary" value="Upload file"/>
                                 </div>
                                 </form>
 

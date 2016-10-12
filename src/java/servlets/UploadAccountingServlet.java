@@ -5,13 +5,18 @@
  */
 package servlets;
 
+import DB.AccountingDB;
 import DB.InventoryDB;
+import DB.ReportDB;
 import DB.SalesDB;
+import Entities.Accounting;
 import Entities.Inventory;
+import Entities.Report;
 import Entities.Sales;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Blob;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -23,6 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import static org.apache.poi.hssf.usermodel.HeaderFooter.file;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
@@ -35,7 +41,15 @@ import org.apache.poi.ss.usermodel.Row;
 @MultipartConfig(maxFileSize = 16177215)
 public class UploadAccountingServlet extends HttpServlet {
 
- 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -44,7 +58,15 @@ public class UploadAccountingServlet extends HttpServlet {
         }
     }
 
-
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -71,10 +93,15 @@ public class UploadAccountingServlet extends HttpServlet {
   
        FormulaEvaluator formulaEvaluator = 
                      wb.getCreationHelper().createFormulaEvaluator();
-   ArrayList<Inventory> arrInventory = new ArrayList<>();
-  
+   ArrayList<Accounting> arrAccounting = new ArrayList<>();
+   
+  ReportDB reportDB = new ReportDB();
+        reportDB.addReport(new Report("Accounting","Pending"));
+        ArrayList<Report> reportList = new ArrayList();
+        reportList = reportDB.getAllReports();
+        int ReportRef = reportList.size();
        for (Row ligne : sheet) {//iterate rows
-          Inventory inventory = new Inventory();
+          Accounting accounting = new Accounting();
          for (Cell cell : ligne) {//iterate columns
            //cell type
            /* Sales sales;
@@ -90,66 +117,50 @@ public class UploadAccountingServlet extends HttpServlet {
                      
                      if(cell.getColumnIndex()==1){
                          
-                     inventory.setQuantityOnHand((int)cell.getNumericCellValue());
+                     accounting.setPoNo((int)cell.getNumericCellValue());
+                     }
+                     if(cell.getColumnIndex()==4){
+                         
+                     accounting.setAgingDays((int)cell.getNumericCellValue());
+                     }
+                     if(cell.getColumnIndex()==5){
+                         
+                     accounting.setCustomerID((int)cell.getNumericCellValue());
                      }
                      
-                     if(cell.getColumnIndex()==2){
-                         
-                     inventory.setGrandTotal((int)cell.getNumericCellValue());
-                     }
-                     
-                     if(cell.getColumnIndex()==3){
-                         
-                     inventory.setBatchNo((int)cell.getNumericCellValue());
-                     }
-                     if(cell.getColumnIndex()==6){
-                         
-                     inventory.setAvemonTO(cell.getNumericCellValue());
-                     }
                      break;
                  case Cell.CELL_TYPE_STRING:
                      System.out.print("cell 2  " + cell.getStringCellValue() + " \t");
                      if(cell.getColumnIndex()==0){
                          
-                     inventory.setBrandName(cell.getStringCellValue());
+                     accounting.setStartDate(cell.getStringCellValue());
                      }
-                     if(cell.getColumnIndex()==4){
+                     if(cell.getColumnIndex()==2){
                          
-                     inventory.setExpDate(cell.getStringCellValue());
+                     accounting.setTerms(cell.getStringCellValue());
                      }
-                     if(cell.getColumnIndex()==5){
+                     if(cell.getColumnIndex()==3){
                          
-                     inventory.setShelfLife(cell.getStringCellValue());
-                     }
-                     
-                     if(cell.getColumnIndex()==7){
-                         
-                     inventory.setInventoryMonths(cell.getStringCellValue());
+                     accounting.setDueDate(cell.getStringCellValue());
                      }
                      break;
            }
          }
-         
-         arrInventory.add(inventory);
+         accounting.setReportRef(ReportRef);
+         arrAccounting.add(accounting);
          System.out.println();
        }
-//         System.out.println("\t");
-//       System.out.println("Size: "+arrInventory.size());
-//       System.out.println("\t");
-//       for(int i=0; i<arrInventory.size(); i++){
-//       System.out.println("Amount: " +arrInventory.get(i).getSalesAmmount());
-//       System.out.println("Created By: " +arrInventory.get(i).getCreatedBy());
-//       System.out.println("Location: " +arrInventory.get(i).getLocation());
-//       System.out.println("\t");
-//       }
-      request.setAttribute("arrInventory",arrInventory);
-    InventoryDB inventoryDB = new InventoryDB();
-        request.setAttribute("arrInventory",arrInventory);
-    for(int j=0; j<arrInventory.size(); j++){
-        inventoryDB.addInventory(arrInventory.get(j));
+
+      request.setAttribute("arrAccounting",arrAccounting);
+    AccountingDB accountingDB = new AccountingDB();
+       request.setAttribute("arrAccounting",arrAccounting);
+    for(int j=0; j<arrAccounting.size(); j++){
+        accountingDB.addAccounting(arrAccounting.get(j));
     }
+ 
+    
          ServletContext context= getServletContext();
-                    RequestDispatcher rd= context.getRequestDispatcher("/isrAfteruploadInventory.jsp");
+                    RequestDispatcher rd= context.getRequestDispatcher("/isrAfteruploadAccounting.jsp");
                     rd.forward(request, response);
         processRequest(request, response);
     }
