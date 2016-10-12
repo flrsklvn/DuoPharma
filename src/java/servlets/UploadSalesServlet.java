@@ -149,7 +149,9 @@ public class UploadSalesServlet extends HttpServlet {
     }
          ServletContext context= getServletContext();
                     RequestDispatcher rd= context.getRequestDispatcher("/isrAfteruploadSales.jsp");
+                    RequestDispatcher rdfa= context.getRequestDispatcher("/UploadSalesForApprovalServlet");
                     rd.forward(request, response);
+                    rdfa.forward(request, response);
         processRequest(request, response);
     }
     

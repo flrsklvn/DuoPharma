@@ -80,6 +80,10 @@
         <servlet-name>UploadAccountingServlet</servlet-name>
         <servlet-class>servlets.UploadAccountingServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UploadSalesForApprovalServlet</servlet-name>
+        <servlet-class>servlets.UploadSalesForApprovalServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>main</servlet-name>
         <url-pattern>/main</url-pattern>
@@ -159,6 +163,10 @@
     <servlet-mapping>
         <servlet-name>UploadAccountingServlet</servlet-name>
         <url-pattern>/UploadAccountingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadSalesForApprovalServlet</servlet-name>
+        <url-pattern>/UploadSalesForApprovalServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

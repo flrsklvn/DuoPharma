@@ -78,27 +78,5 @@ public class ReportDB {
            }
         return false;
     }
-    
-    public int GetLastReport(){
-        int lastReport = 1;
-        try{
-            DBConnectionFactory factory = DBConnectionFactory.getInstance();
-            Connection conn = factory.getConnection();
-            String query = "select LAST(reportID) from report;";
-            PreparedStatement pstmt = conn.prepareStatement(query);
-            ResultSet rs = pstmt.executeQuery();
-            if(rs.next()){
-                
-                do{
-                  lastReport = rs.getInt("reportID");
-                } while (rs.next());
-            }
-            rs.close();
-            pstmt.close();
-            conn.close();
-        }catch (SQLException ex){
-            Logger.getLogger(ReportDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return lastReport;
-    }
+   
 }

@@ -240,7 +240,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Upload Accounting</td>
+                                <td>Upload Monthly Accounting</td>
                                 <td>8/2/2016</td>
                                 <td>Completed</td>
                                 <td>None</td>
@@ -248,19 +248,13 @@
 
                             </tr>
                             <tr>
-                                <td>Upload Inventory</td>
+                                <td>Upload Monthly Inventory</td>
                                 <td>10/7/2016</td>
-                                <td>Pending</td>
-                                <td>Upload!</td>
+                                <td>Not Started</td>
+                                <td><button><a href="isrInventoryUpload.jsp"></a>Upload</button></td>
 
                             </tr>
-                            <tr>
-                                <td>Upload Sales</td>
-                                <td>9/9/2016</td>
-                                <td>Incomplete </td>
-                                <td>Complete</td>
-
-                            </tr>
+                          
                         </tbody>
                     </table>   
 

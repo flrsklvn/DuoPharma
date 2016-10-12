@@ -4,6 +4,7 @@
     Author     : mvcalsado
 --%>
 
+<%@page import="DB.SalesDB"%>
 <%@page import="Entities.Sales"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -222,7 +223,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <center><h4>Sales Report Summary</h4></center>
-                    <form>
+                    <form action="${pageContext.request.contextPath}/UploadSalesForApprovalServlet" method="post">
                     <table class="table table-list-search">
                           
                         <thead>
@@ -238,6 +239,8 @@
                         </thead>
                         <%
                         ArrayList<Sales> sales = (ArrayList<Sales>) request.getAttribute("arrSales");
+                        SalesDB salesDB = new SalesDB();
+                        
                       %>
                         <tbody>
                             
@@ -247,12 +250,17 @@
                                 <td><%= sales.get(k).getCreatedBy()%></td>
                                 <td><%= sales.get(k).getLocation()%></td>
                                  </tr>
-                             <%}%>
+                              <%   
+                             }%>
                              
                         </tbody>
                           
                     </table>
-                              <button type="submit" id="js-upload-submit"><a href="isrSalesUpload.jsp">Confirm</a></button>
+                       <%--      <%    for(int i=0; i<sales.size(); i++){
+                                salesDB.addSales(sales.get(i));
+                            
+                          }%> --%>
+                              <button type="submit" id="js-upload-submit">Submit For Approval</button>
                     </form>
                     
                
