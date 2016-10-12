@@ -269,7 +269,9 @@ public final class isrview_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <table class=\"table table-list-search\">\n");
       out.write("                        <thead>\n");
       out.write("                            <tr>\n");
-      out.write("                                <th>Tasks</th>\n");
+      out.write("                                <th>Task</th>\n");
+      out.write("                                <th>Report Date</th>\n");
+      out.write("                                <th>Report Type</th>\n");
       out.write("                                <th>Due Date</th>\n");
       out.write("                                <th>Status</th>\n");
       out.write("                                <th>Action</th>\n");

@@ -4,6 +4,9 @@
     Author     : mvcalsado
 --%>
 
+<%@page import="Entities.Task"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="DB.TaskDB"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -227,34 +230,42 @@
                 <div class="col-md-9">
 
                     <h2> Welcome, Myron! </h2>
+                    <%
+                        TaskDB tasks = new TaskDB();
+                         ArrayList<Task> taskList = tasks.getAllTasks();
+                        
+                    
+                    
+                    %>
                     <table class="table table-list-search">
                         <thead>
+                         
                             <tr>
-                                <th>Tasks</th>
+                                <th>Task</th>
+                                <th>Report Date</th>
+                                <th>Report Type</th>
                                 <th>Due Date</th>
                                 <th>Status</th>
                                 <th>Action</th>
 
 
                             </tr>
+                           
                         </thead>
                         <tbody>
+                             <%  for(int i=0; i<taskList.size(); i++){ %>
+ 
                             <tr>
-                                <td>Upload Monthly Accounting</td>
-                                <td>8/2/2016</td>
-                                <td>Completed</td>
-                                <td>None</td>
-
+                                <td><%= taskList.get(i).getTaskName()%></td>
+                                <td>Report Date</td>
+                                <td>Report Type</td>
+                                <td><%= taskList.get(i).getDueDate()%></td>
+                                <td><%= taskList.get(i).getStatus()%></td>
+                                <td><button><a href="isrSalesUpload.jsp"><%= taskList.get(i).getAction()%></a></button></td>
 
                             </tr>
-                            <tr>
-                                <td>Upload Monthly Inventory</td>
-                                <td>10/7/2016</td>
-                                <td>Not Started</td>
-                                <td><button><a href="isrInventoryUpload.jsp"></a>Upload</button></td>
-
-                            </tr>
-                          
+                             <%}%>
+                            
                         </tbody>
                     </table>   
 

@@ -100,11 +100,8 @@ public class UploadSalesServlet extends HttpServlet {
           Sales sales = new Sales();
          for (Cell cell : ligne) {//iterate columns
            //cell type
-           /* Sales sales;
-           (lagay sa sys out)
-           sales.setSalesID(cell.getNumericCellValue());
-           --- WALA TO */         
-
+                
+       
            switch (formulaEvaluator.evaluateInCell(cell).getCellType())
            {
                  case Cell.CELL_TYPE_NUMERIC:
