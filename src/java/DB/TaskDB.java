@@ -26,7 +26,9 @@ public class TaskDB {
         try{
             DBConnectionFactory factory = DBConnectionFactory.getInstance();
             Connection conn = factory.getConnection();
-            String query = "select * from task order by taskID";
+            String query = "select * from task t JOIN report r "
+                    + "ON t.reportConnected = r.reportID "
+                    + "order by taskID";
             PreparedStatement pstmt = conn.prepareStatement(query);
             ResultSet rs = pstmt.executeQuery();
             if(rs.next()){
@@ -42,13 +44,15 @@ public class TaskDB {
                     account.setStartDate(rs.getString("startDate")); */
                   
                  task = new Task();
-                 task.setTaskID(rs.getInt("taskID"));
-                 task.setAction(rs.getString("action"));
-                 task.setDueDate(rs.getString("dueDate"));
-                 task.setHandledBy(rs.getInt("handledBy"));
-                 task.setReportConnected(rs.getInt("reportConnected"));
-                 task.setStatus(rs.getString("status"));
-                 task.setTaskName(rs.getString("taskName"));
+                 task.setTaskID(rs.getInt("t.taskID"));
+                 task.setAction(rs.getString("t.action"));
+                 task.setDueDate(rs.getString("t.dueDate"));
+                 task.setHandledBy(rs.getInt("t.handledBy"));
+                 task.setReportConnected(rs.getInt("t.reportConnected"));
+                 task.setStatus(rs.getString("t.status"));
+                 task.setTaskName(rs.getString("t.taskName"));
+                 task.setReportDate(rs.getString("r.createDate"));
+                 task.setReportType(rs.getString("r.reportType"));
                   
                   
                   taskList.add(task);

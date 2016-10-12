@@ -18,6 +18,8 @@ public class Task {
     protected String action;
     protected int reportConnected;
     protected int HandledBy;
+    protected String reportType;
+    protected String reportDate;
 
     public Task() {
     }
@@ -118,6 +120,34 @@ public class Task {
      */
     public void setHandledBy(int HandledBy) {
         this.HandledBy = HandledBy;
+    }
+
+    /**
+     * @return the reportType
+     */
+    public String getReportType() {
+        return reportType;
+    }
+
+    /**
+     * @param reportType the reportType to set
+     */
+    public void setReportType(String reportType) {
+        this.reportType = reportType;
+    }
+
+    /**
+     * @return the reportDate
+     */
+    public String getReportDate() {
+        return reportDate;
+    }
+
+    /**
+     * @param reportDate the reportDate to set
+     */
+    public void setReportDate(String reportDate) {
+        this.reportDate = reportDate;
     }
     
 }
