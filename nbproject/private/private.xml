@@ -3,14 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Klvn%20Flrs/Documents/DuoPharma/src/java/DB/SalesDB.java</file>
-            <file>file:/C:/Users/Klvn%20Flrs/Documents/DuoPharma/src/java/Entities/Accounting.java</file>
             <file>file:/C:/Users/Klvn%20Flrs/Documents/DuoPharma/src/java/servlets/UploadSalesServlet.java</file>
-            <file>file:/C:/Users/Klvn%20Flrs/Documents/DuoPharma/src/java/servlets/UploadAccountingServlet.java</file>
-            <file>file:/C:/Users/Klvn%20Flrs/Documents/DuoPharma/web/isrAccountingUpload.jsp</file>
-            <file>file:/C:/Users/Klvn%20Flrs/Documents/DuoPharma/src/java/DB/AccountingDB.java</file>
-            <file>file:/C:/Users/Klvn%20Flrs/Documents/DuoPharma/src/java/DB/InventoryDB.java</file>
-            <file>file:/C:/Users/Klvn%20Flrs/Documents/DuoPharma/web/isrSalesUpload.jsp</file>
+            <file>file:/C:/Users/Klvn%20Flrs/Documents/DuoPharma/src/java/DB/TaskDB.java</file>
+            <file>file:/C:/Users/Klvn%20Flrs/Documents/DuoPharma/web/isrAfteruploadSales.jsp</file>
+            <file>file:/C:/Users/Klvn%20Flrs/Documents/DuoPharma/web/isrview.jsp</file>
+            <file>file:/C:/Users/Klvn%20Flrs/Documents/DuoPharma/web/inventoryReportLibrary.jsp</file>
         </group>
     </open-files>
 </project-private>

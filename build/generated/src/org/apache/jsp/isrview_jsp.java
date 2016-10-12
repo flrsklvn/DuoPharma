@@ -3,6 +3,9 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import Entities.Task;
+import java.util.ArrayList;
+import DB.TaskDB;
 
 public final class isrview_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -41,6 +44,9 @@ public final class isrview_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -233,28 +239,28 @@ public final class isrview_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <li class=\"active\" >\n");
       out.write("                        <a href=\"isrview.jsp\">\n");
       out.write("                            Home\n");
-      out.write("                           </a>\n");
+      out.write("                        </a>\n");
       out.write("                    </li>\n");
       out.write("                    <li data-toggle=\"collapse\" data-target=\"#products\" class=\"collapsed\">\n");
       out.write("                        <a href=\"#\"><i class=\"fa fa-gift fa-lg\"></i> Upload Facility <span class=\"arrow\"></span></a>\n");
       out.write("                    </li>\n");
       out.write("                    <li>\n");
-      out.write("                    <ul class=\"sub-menu collapse\" id=\"products\">\n");
-      out.write("                        <li><a href=\"isrAccountingUpload.jsp\">Accounting</a></li>\n");
-      out.write("                        <li><a href=\"isrInventoryUpload.jsp\">Inventory</a></li>\n");
-      out.write("                        <li><a href=\"isrSalesUpload.jsp\">Sales</a></li>\n");
-      out.write("                    </ul>\n");
-      out.write("                        </li>\n");
+      out.write("                        <ul class=\"sub-menu collapse\" id=\"products\">\n");
+      out.write("                            <li><a href=\"isrAccountingUpload.jsp\">Accounting</a></li>\n");
+      out.write("                            <li><a href=\"isrInventoryUpload.jsp\">Inventory</a></li>\n");
+      out.write("                            <li><a href=\"isrSalesUpload.jsp\">Sales</a></li>\n");
+      out.write("                        </ul>\n");
+      out.write("                    </li>\n");
       out.write("                    <li data-toggle=\"collapse\" data-target=\"#service\" class=\"collapsed\">\n");
       out.write("                        <a href=\"#\"><i class=\"fa fa-globe fa-lg\"></i> Reports Library <span class=\"arrow\"></span></a>\n");
       out.write("                    </li>\n");
       out.write("                    <li>\n");
-      out.write("                    <ul class=\"sub-menu collapse\" id=\"service\">\n");
-      out.write("                        <li>Accounting</li>\n");
-      out.write("                        <li>Inventory</li>\n");
-      out.write("                        <li>Sales</li>\n");
-      out.write("                    </ul>\n");
-      out.write("                        </li>\n");
+      out.write("                        <ul class=\"sub-menu collapse\" id=\"service\">\n");
+      out.write("                            <li>Accounting</li>\n");
+      out.write("                            <li>Inventory</li>\n");
+      out.write("                            <li>Sales</li>\n");
+      out.write("                        </ul>\n");
+      out.write("                    </li>\n");
       out.write("\n");
       out.write("\n");
       out.write("                </ul>\n");
@@ -266,8 +272,17 @@ public final class isrview_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <div class=\"col-md-9\">\n");
       out.write("\n");
       out.write("                    <h2> Welcome, Myron! </h2>\n");
+      out.write("                    ");
+
+                        TaskDB tasks = new TaskDB();
+                        ArrayList<Task> taskList = tasks.getAllTasks();
+
+
+                    
+      out.write("\n");
       out.write("                    <table class=\"table table-list-search\">\n");
       out.write("                        <thead>\n");
+      out.write("\n");
       out.write("                            <tr>\n");
       out.write("                                <th>Task</th>\n");
       out.write("                                <th>Report Date</th>\n");
@@ -278,30 +293,146 @@ public final class isrview_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("                            </tr>\n");
+      out.write("\n");
       out.write("                        </thead>\n");
       out.write("                        <tbody>\n");
+      out.write("                            ");
+  for (int i = 0; i < taskList.size(); i++) {
+                                     if (taskList.get(i).getStatus().equals("Not Started")) {
+      out.write("\n");
       out.write("                            <tr>\n");
-      out.write("                                <td>Upload Monthly Accounting</td>\n");
-      out.write("                                <td>8/2/2016</td>\n");
-      out.write("                                <td>Completed</td>\n");
-      out.write("                                <td>None</td>\n");
+      out.write("                                <td>");
+      out.print( taskList.get(i).getTaskName());
+      out.write("</td>\n");
+      out.write("                                <td>");
+      out.print( taskList.get(i).getReportDate());
+      out.write("</td>\n");
+      out.write("                                <td>");
+      out.print( taskList.get(i).getReportType());
+      out.write("</td>\n");
+      out.write("                                <td>");
+      out.print( taskList.get(i).getDueDate());
+      out.write("</td>\n");
+      out.write("                                <td><font color=\"red\">");
+      out.print( taskList.get(i).getStatus());
+      out.write("</font></td>\n");
+      out.write("                                    ");
+
+                                        if (taskList.get(i).getReportType().equals("Inventory")) {
+                                            if (taskList.get(i).getAction().equals("Upload")) {
+                                    
+      out.write("\n");
+      out.write("                                <td><button><a href=\"isrInventoryUpload.jsp\">");
+      out.print( taskList.get(i).getAction());
+      out.write("</a></button></td>\n");
+      out.write("                                        ");
+}
+                                        if (taskList.get(i).getAction().equals("Edit")) {
+      out.write(" \n");
+      out.write("                                <td><button><a>");
+      out.print( taskList.get(i).getAction());
+      out.write("</a></button></td>\n");
+      out.write("\n");
+      out.write("                                                                   ");
+    }  
+      out.write("\n");
+      out.write("                                ");
+}
+      out.write("\n");
+      out.write("                                ");
+
+                                        if (taskList.get(i).getReportType().equals("Sales")) {
+                                            if (taskList.get(i).getAction().equals("Upload")) {
+                                    
+      out.write("\n");
+      out.write("                                <td><button><a href=\"isrSalesUpload.jsp\">");
+      out.print( taskList.get(i).getAction());
+      out.write("</a></button></td>\n");
+      out.write("                                        ");
+}
+                                        if (taskList.get(i).getAction().equals("Upload")) {
+      out.write(" \n");
+      out.write("                                <td><button><a>");
+      out.print( taskList.get(i).getAction());
+      out.write("</a></button></td>\n");
+      out.write("\n");
+      out.write("                                                                   ");
+    }  
+      out.write("\n");
+      out.write("                                ");
+}
       out.write("\n");
       out.write("\n");
       out.write("                            </tr>\n");
+      out.write("                            ");
+}
+      out.write("\n");
+      out.write("                            ");
+
+                                        if (taskList.get(i).getReportType().equals("Accounting")) {
+                                            if (taskList.get(i).getAction().equals("Upload")) {
+                                    
+      out.write("\n");
+      out.write("                                <td><button><a href=\"isrAccountingUpload.jsp\">");
+      out.print( taskList.get(i).getAction());
+      out.write("</a></button></td>\n");
+      out.write("                                        ");
+}
+                                        if (taskList.get(i).getAction().equals("Edit")) {
+      out.write(" \n");
+      out.write("                                <td><button><a>");
+      out.print( taskList.get(i).getAction());
+      out.write("</a></button></td>\n");
+      out.write("\n");
+      out.write("                                                                   ");
+    }  
+      out.write("\n");
+      out.write("                                ");
+}
+      out.write("\n");
+      out.write("                            ");
+
+                              if (taskList.get(i).getStatus().equals("Completed")) {
+      out.write("\n");
+      out.write("\n");
       out.write("                            <tr>\n");
-      out.write("                                <td>Upload Monthly Inventory</td>\n");
-      out.write("                                <td>10/7/2016</td>\n");
-      out.write("                                <td>Not Started</td>\n");
-      out.write("                                <td><button><a href=\"isrInventoryUpload.jsp\"></a>Upload</button></td>\n");
+      out.write("                                <td>");
+      out.print( taskList.get(i).getTaskName());
+      out.write("</td>\n");
+      out.write("                                <td>");
+      out.print( taskList.get(i).getReportDate());
+      out.write("</td>\n");
+      out.write("                                <td>");
+      out.print( taskList.get(i).getReportType());
+      out.write("</td>\n");
+      out.write("                                <td>");
+      out.print( taskList.get(i).getDueDate());
+      out.write("</td>\n");
+      out.write("                                <td><font color=\"green\">");
+      out.print( taskList.get(i).getStatus());
+      out.write("</font></td>\n");
+      out.write("\n");
+      out.write("                                <td><button><a href=\"isrInventoryUpload.jsp\">");
+      out.print( taskList.get(i).getAction());
+      out.write("</a></button></td>\n");
       out.write("\n");
       out.write("                            </tr>\n");
-      out.write("                          \n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("                            ");
+
+                                             }
+                                         }
+                                     
+      out.write("\n");
+      out.write("\n");
       out.write("                        </tbody>\n");
       out.write("                    </table>   \n");
       out.write("\n");
       out.write("\n");
       out.write("                </div>\n");
-      out.write("                \n");
+      out.write("\n");
       out.write("                <div class=\"col-sm-3 sidenav\">\n");
       out.write("                    <div class=\"well\">\n");
       out.write("                        <p><b>Reports for Approval</b></p>\n");

@@ -78,5 +78,97 @@ public class ReportDB {
            }
         return false;
     }
-   
+    
+    public int GetLastReport(){
+        int lastReport = 1;
+        try{
+            DBConnectionFactory factory = DBConnectionFactory.getInstance();
+            Connection conn = factory.getConnection();
+            String query = "select LAST(reportID) from report;";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                
+                do{
+                  lastReport = rs.getInt("reportID");
+                } while (rs.next());
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+        }catch (SQLException ex){
+            Logger.getLogger(ReportDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lastReport;
+    }
+    
+    public ArrayList<Report> GetAllReportsForValidation(){
+        ArrayList<Report> reportsForValidation = null;
+        try{
+            DBConnectionFactory factory = DBConnectionFactory.getInstance();
+            Connection conn = factory.getConnection();
+            String query = "select * from report where status = 'For Validation';";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                 reportsForValidation = new ArrayList();
+                Report report;
+                do{
+                 
+                  
+                  report = new Report();
+                  report.setReportID(rs.getInt("reportID"));
+                  report.setReportType(rs.getString("reportType"));
+                  report.setStatus(rs.getString("status"));
+                  report.setFile(rs.getBlob("file"));
+                  
+                  reportsForValidation.add(report);
+                } while (rs.next());
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+        }catch (SQLException ex){
+            Logger.getLogger(ReportDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return reportsForValidation;
+    }
+    
+    public ArrayList<Report> GetAllReportsForApproval(){
+        ArrayList<Report> reportsForApproval = null;
+        try{
+            DBConnectionFactory factory = DBConnectionFactory.getInstance();
+            Connection conn = factory.getConnection();
+            String query = "select * from report where status = 'For Approval';";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                 reportsForApproval = new ArrayList();
+                Report report;
+                do{
+                  /*  account = new Account();
+                    account.setAccountID(rs.getInt("accountID"));
+                    account.setAgingDays(rs.getInt("agingDays"));
+                    account.setDueDate(rs.getString("dueDate"));
+                    account.setOpenBalance(rs.getFloat("openBalance"));
+                    account.setOrderID(rs.getInt("orderID"));
+                    account.setStartDate(rs.getString("startDate")); */
+                  
+                  report = new Report();
+                  report.setReportID(rs.getInt("reportID"));
+                  report.setReportType(rs.getString("reportType"));
+                  report.setStatus(rs.getString("status"));
+                  report.setFile(rs.getBlob("file"));
+                  
+                  reportsForApproval.add(report);
+                } while (rs.next());
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+        }catch (SQLException ex){
+            Logger.getLogger(ReportDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return reportsForApproval;
+    }
 }

@@ -4,6 +4,8 @@
     Author     : mvcalsado
 --%>
 
+<%@page import="DB.ReportDB"%>
+<%@page import="Entities.Report"%>
 <%@page import="Entities.Task"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DB.TaskDB"%>
@@ -197,28 +199,28 @@
                     <li class="active" >
                         <a href="isrview.jsp">
                             Home
-                           </a>
+                        </a>
                     </li>
                     <li data-toggle="collapse" data-target="#products" class="collapsed">
                         <a href="#"><i class="fa fa-gift fa-lg"></i> Upload Facility <span class="arrow"></span></a>
                     </li>
                     <li>
-                    <ul class="sub-menu collapse" id="products">
-                        <li><a href="isrAccountingUpload.jsp">Accounting</a></li>
-                        <li><a href="isrInventoryUpload.jsp">Inventory</a></li>
-                        <li><a href="isrSalesUpload.jsp">Sales</a></li>
-                    </ul>
-                        </li>
+                        <ul class="sub-menu collapse" id="products">
+                            <li><a href="isrAccountingUpload.jsp">Accounting</a></li>
+                            <li><a href="isrInventoryUpload.jsp">Inventory</a></li>
+                            <li><a href="isrSalesUpload.jsp">Sales</a></li>
+                        </ul>
+                    </li>
                     <li data-toggle="collapse" data-target="#service" class="collapsed">
                         <a href="#"><i class="fa fa-globe fa-lg"></i> Reports Library <span class="arrow"></span></a>
                     </li>
                     <li>
-                    <ul class="sub-menu collapse" id="service">
-                        <li>Accounting</li>
-                        <li>Inventory</li>
-                        <li>Sales</li>
-                    </ul>
-                        </li>
+                        <ul class="sub-menu collapse" id="service">
+                            <li>Accounting</li>
+                            <li>Inventory</li>
+                            <li>Sales</li>
+                        </ul>
+                    </li>
 
 
                 </ul>
@@ -232,14 +234,13 @@
                     <h2> Welcome, Myron! </h2>
                     <%
                         TaskDB tasks = new TaskDB();
-                         ArrayList<Task> taskList = tasks.getAllTasks();
-                        
-                    
-                    
+                        ArrayList<Task> taskList = tasks.getAllTasks();
+
+
                     %>
                     <table class="table table-list-search">
                         <thead>
-                         
+
                             <tr>
                                 <th>Task</th>
                                 <th>Report Date</th>
@@ -250,28 +251,80 @@
 
 
                             </tr>
-                           
+
                         </thead>
                         <tbody>
-                             <%  for(int i=0; i<taskList.size(); i++){ %>
- 
+                            <%  for (int i = 0; i < taskList.size(); i++) {
+                                     if (taskList.get(i).getStatus().equals("Not Started")) {%>
                             <tr>
                                 <td><%= taskList.get(i).getTaskName()%></td>
-                                <td>Report Date</td>
-                                <td>Report Type</td>
+                                <td><%= taskList.get(i).getReportDate()%></td>
+                                <td><%= taskList.get(i).getReportType()%></td>
                                 <td><%= taskList.get(i).getDueDate()%></td>
-                                <td><%= taskList.get(i).getStatus()%></td>
+                                <td><font color="gray"><%= taskList.get(i).getStatus()%></font></td>
+                                    <%
+                                        if (taskList.get(i).getReportType().equals("Inventory")) {
+                                            if (taskList.get(i).getAction().equals("Upload")) {
+                                    %>
+                                <td><button><a href="isrInventoryUpload.jsp"><%= taskList.get(i).getAction()%></a></button></td>
+                                        <%}
+                                        if (taskList.get(i).getAction().equals("Edit")) {%> 
+                                <td><button><a><%= taskList.get(i).getAction()%></a></button></td>
+
+                                                                   <%    }  %>
+                                <%}%>
+                                <%
+                                        if (taskList.get(i).getReportType().equals("Sales")) {
+                                            if (taskList.get(i).getAction().equals("Upload")) {
+                                    %>
                                 <td><button><a href="isrSalesUpload.jsp"><%= taskList.get(i).getAction()%></a></button></td>
+                                        <%}
+                                        if (taskList.get(i).getAction().equals("Edit")) {%> 
+                                <td><button><a><%= taskList.get(i).getAction()%></a></button></td>
+
+                                                                   <%    }  %>
+                                <%}%>
 
                             </tr>
-                             <%}%>
-                            
+                            <%}%>
+                            <%
+                                        if (taskList.get(i).getReportType().equals("Accounting")) {
+                                            if (taskList.get(i).getAction().equals("Upload")) {
+                                    %>
+                                <td><button><a href="isrAccountingUpload.jsp"><%= taskList.get(i).getAction()%></a></button></td>
+                                        <%}
+                                        if (taskList.get(i).getAction().equals("Edit")) {%> 
+                                <td><button><a><%= taskList.get(i).getAction()%></a></button></td>
+
+                                                                   <%    }  %>
+                                <%}%>
+                            <%
+                              if (taskList.get(i).getStatus().equals("Completed")) {%>
+
+                            <tr>
+                                <td><%= taskList.get(i).getTaskName()%></td>
+                                <td><%= taskList.get(i).getReportDate()%></td>
+                                <td><%= taskList.get(i).getReportType()%></td>
+                                <td><%= taskList.get(i).getDueDate()%></td>
+                                <td><font color="green"><%= taskList.get(i).getStatus()%></font></td>
+
+                                <td></td>
+
+                            </tr>
+
+
+
+                            <%
+                                             }
+                                         }
+                                     %>
+
                         </tbody>
                     </table>   
 
 
                 </div>
-                
+
                 <div class="col-sm-3 sidenav">
                     <div class="well">
                         <p><b>Reports for Approval</b></p>
@@ -283,11 +336,19 @@
                                 </tr>
 
                             </thead>
+                            <%
+                            ReportDB report = new ReportDB();
+                            ArrayList<Report> reportListForApproval = report.GetAllReportsForApproval();
+                            
+                           %>
                             <tbody>
+                                <% 
+                                for(int k=0; k<reportListForApproval.size(); k++){ %>
                                 <tr>
-                                    <td>123123213</td>
-                                    <td>Incomplete</td>
+                                    <td><%= reportListForApproval.get(k).getReportID()%></td>
+                                    <td><%= reportListForApproval.get(k).getStatus()%></td>
                                 </tr>
+                                 <% } %>
                             </tbody>
                         </table>
                     </div>
@@ -302,11 +363,19 @@
                                 </tr>
 
                             </thead>
+                            <%
+                           
+                            ArrayList<Report> reportListforValidation = report.GetAllReportsForValidation();
+                            
+                           %>
                             <tbody>
+                                <% 
+                                for(int m=0; m<reportListforValidation.size(); m++){ %>
                                 <tr>
-                                    <td>123123213</td>
-                                    <td>Incomplete</td>
+                                    <td><%= reportListforValidation.get(m).getReportID()%></td>
+                                    <td><%= reportListforValidation.get(m).getStatus()%></td>
                                 </tr>
+                                 <% } %>
                             </tbody>
                         </table>
                     </div>

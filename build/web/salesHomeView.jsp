@@ -4,6 +4,9 @@
     Author     : r.chua
 --%>
 
+<%@page import="Entities.Report"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="DB.ReportDB"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -889,24 +892,34 @@
        
             
             <div class="col-sm-3 sidenav">
-                <div class="well">
-                    <p><b>Reports for Approval</b></p>
-                    <table class="table table-list-search">
-                        <thead>
-                            <tr>
-                                <th>Report ID</th>
-                                <th>Status</th>
-                            </tr>
+               <div class="well">
+                        <p><b>Reports for Approval</b></p>
+                        <table class="table table-list-search">
+                            <thead>
+                                <tr>
+                                    <th>Report ID</th>
+                                    <th>Status</th>
+                                </tr>
 
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>123123213</td>
-                                <td>Incomplete</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <%
+                            ReportDB report = new ReportDB();
+                            ArrayList<Report> reportListForApproval = report.GetAllReportsForApproval();
+                            
+                           %>
+                            <tbody>
+                                <% 
+                                for(int k=0; k<reportListForApproval.size(); k++){ %>
+                                <tr>
+                                    <td><%= reportListForApproval.get(k).getReportID()%></td>
+                                    <td><%= reportListForApproval.get(k).getStatus()%></td>
+                                    <td><button>View Report</button></td>
+                                    
+                                </tr>
+                                 <% } %>
+                            </tbody>
+                        </table>
+                    </div>
             </div>
          </div>
         

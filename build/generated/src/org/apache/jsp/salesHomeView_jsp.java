@@ -3,6 +3,9 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import Entities.Report;
+import java.util.ArrayList;
+import DB.ReportDB;
 
 public final class salesHomeView_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -41,6 +44,9 @@ public final class salesHomeView_jsp extends org.apache.jasper.runtime.HttpJspBa
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -928,24 +934,44 @@ public final class salesHomeView_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("       \n");
       out.write("            \n");
       out.write("            <div class=\"col-sm-3 sidenav\">\n");
-      out.write("                <div class=\"well\">\n");
-      out.write("                    <p><b>Reports for Approval</b></p>\n");
-      out.write("                    <table class=\"table table-list-search\">\n");
-      out.write("                        <thead>\n");
-      out.write("                            <tr>\n");
-      out.write("                                <th>Report ID</th>\n");
-      out.write("                                <th>Status</th>\n");
-      out.write("                            </tr>\n");
+      out.write("               <div class=\"well\">\n");
+      out.write("                        <p><b>Reports for Approval</b></p>\n");
+      out.write("                        <table class=\"table table-list-search\">\n");
+      out.write("                            <thead>\n");
+      out.write("                                <tr>\n");
+      out.write("                                    <th>Report ID</th>\n");
+      out.write("                                    <th>Status</th>\n");
+      out.write("                                </tr>\n");
       out.write("\n");
-      out.write("                        </thead>\n");
-      out.write("                        <tbody>\n");
-      out.write("                            <tr>\n");
-      out.write("                                <td>123123213</td>\n");
-      out.write("                                <td>Incomplete</td>\n");
-      out.write("                            </tr>\n");
-      out.write("                        </tbody>\n");
-      out.write("                    </table>\n");
-      out.write("                </div>\n");
+      out.write("                            </thead>\n");
+      out.write("                            ");
+
+                            ReportDB report = new ReportDB();
+                            ArrayList<Report> reportListForApproval = report.GetAllReportsForApproval();
+                            
+                           
+      out.write("\n");
+      out.write("                            <tbody>\n");
+      out.write("                                ");
+ 
+                                for(int k=0; k<reportListForApproval.size(); k++){ 
+      out.write("\n");
+      out.write("                                <tr>\n");
+      out.write("                                    <td>");
+      out.print( reportListForApproval.get(k).getReportID());
+      out.write("</td>\n");
+      out.write("                                    <td>");
+      out.print( reportListForApproval.get(k).getStatus());
+      out.write("</td>\n");
+      out.write("                                    <td><button>View Report</button></td>\n");
+      out.write("                                    \n");
+      out.write("                                </tr>\n");
+      out.write("                                 ");
+ } 
+      out.write("\n");
+      out.write("                            </tbody>\n");
+      out.write("                        </table>\n");
+      out.write("                    </div>\n");
       out.write("            </div>\n");
       out.write("         </div>\n");
       out.write("        \n");
