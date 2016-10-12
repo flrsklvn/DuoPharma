@@ -223,7 +223,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <center><h4>Sales Report Summary</h4></center>
-                    <form action="${pageContext.request.contextPath}/UploadSalesForApprovalServlet" method="post">
+                    <form>
                     <table class="table table-list-search">
                           
                         <thead>
@@ -260,7 +260,7 @@
                                 salesDB.addSales(sales.get(i));
                             
                           }%> --%>
-                              <button type="submit" id="js-upload-submit">Submit For Approval</button>
+                       <button type="submit" id="js-upload-submit"><a href="isrSalesUpload.jsp">Submit For Approval</a></button>
                     </form>
                     
                
